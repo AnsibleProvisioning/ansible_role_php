@@ -1,0 +1,11 @@
+- name: PHP | Check for custom INI files
+  local_action: stat path="{{ project_dir }}/ansible-config/files/php"
+  become: no
+  register: ini_files
+
+- name: PHP | Copy custom INI files
+  become: true
+  copy:
+      src: "{{ project_dir }}/ansible-config/files/php/"
+      dest: "/etc/php/{{ php.version }}/fpm/conf.d"
+  when: ini_files.stat.exists

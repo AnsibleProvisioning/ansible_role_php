@@ -1,0 +1,22 @@
+---
+- name: PHP | Check if installed.
+  stat: "path={{ binaries.php }}"
+  register: php_bin
+
+- name: PHP | Install FPM
+  become: yes
+  apt:
+      pkg: "php{{ php.version }}-fpm"
+      state: latest
+
+- name: PHP | Install Packages
+  become: yes
+  apt:
+      pkg: "php{{ php.version }}-{{ item }}"
+      state: latest
+  with_items: "{{ php.packages }}"
+  when: php.packages is defined
+
+- include: configure.yml
+- include: pecl.yml
+- include: custom-ini.yml
