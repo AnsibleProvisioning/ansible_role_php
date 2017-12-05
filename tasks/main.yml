@@ -1,3 +1,13 @@
 ---
-- include: install.yml
-  when: "{{ php.install == true }}"
+- import_tasks: install.yml
+  tags: [php, php-install]
+
+- import_tasks: configure.yml
+  tags: [php, php-config]
+
+- import_tasks: pecl.yml
+  when: php_pecl_packages.0 is defined
+  tags: [php, php-pecl]
+
+- import_tasks: custom-ini.yml
+  tags: [php, php-ini]

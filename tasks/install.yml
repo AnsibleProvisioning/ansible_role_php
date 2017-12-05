@@ -1,22 +1,20 @@
 ---
-- name: PHP | Check if installed.
-  stat: "path={{ binaries.php }}"
-  register: php_bin
+- name: PHP | Add PPA
+  apt_repository:
+      repo: 'ppa:ondrej/php'
 
 - name: PHP | Install FPM
   become: yes
   apt:
-      pkg: "php{{ php.version }}-fpm"
+      pkg: "php{{ php_version }}-fpm"
       state: latest
+      update_cache: yes
 
 - name: PHP | Install Packages
   become: yes
   apt:
-      pkg: "php{{ php.version }}-{{ item }}"
+      pkg: "php{{ php_version }}-{{ item }}"
       state: latest
-  with_items: "{{ php.packages }}"
-  when: php.packages is defined
+  with_items: "{{ php_packages }}"
+  when: php_packages.0 is defined
 
-- include: configure.yml
-- include: pecl.yml
-- include: custom-ini.yml
