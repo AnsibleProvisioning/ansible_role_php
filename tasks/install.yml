@@ -6,14 +6,14 @@
 - name: PHP | Install FPM
   become: yes
   apt:
-      pkg: "php{{ php_version }}-fpm"
+      pkg: "php{{ php.version }}-fpm"
       state: latest
       update_cache: yes
 
 - name: PHP | Install Packages
   become: yes
   apt:
-      pkg: "php{{ php_version }}-{{ item }}"
+      pkg: "php{{ php.version }}-{{ item }}"
       state: latest
   with_items: "{{ php_packages }}"
   when: php_packages.0 is defined

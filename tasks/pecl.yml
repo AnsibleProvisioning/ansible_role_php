@@ -1,6 +1,6 @@
 - name:  PHP | Check PECL packages
   apt:
-      pkg: "php{{ php_version }}-dev"
+      pkg: "php{{ php.version }}-dev"
       state: present
 
 - name: Install PECL libaries.
@@ -13,7 +13,7 @@
 - name: PHP | Create extension .ini file
   template:
       src: "extension.tpl"
-      dest: "/etc/php//{{ php_version }}/mods-available/{{ item }}.ini"
+      dest: "/etc/php//{{ php.version }}/mods-available/{{ item }}.ini"
       owner: "root"
       group: "root"
       mode: 0644

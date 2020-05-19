@@ -1,18 +1,18 @@
 ---
 - name: restart php
   service:
-      name: "php{{ php_version }}-fpm"
+      name: "php{{ php.version }}-fpm"
       enabled: yes
       state: restarted
 
 - name: stop php
   service:
-      name: "php{{ php_version }}-fpm"
+      name: "php{{ php.version }}-fpm"
       enabled: yes
       state: stopped
 
 - name: start php
   service:
-      name: "php{{ php_version }}-fpm"
+      name: "php{{ php.version }}-fpm"
       enabled: yes
       state: started

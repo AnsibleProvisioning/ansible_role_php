@@ -7,5 +7,5 @@
   become: true
   copy:
       src: "{{ files_dir }}/php/"
-      dest: "/etc/php/{{ php_version }}/fpm/conf.d"
+      dest: "/etc/php/{{ php.version }}/fpm/conf.d"
   when: ini_files.stat.exists
