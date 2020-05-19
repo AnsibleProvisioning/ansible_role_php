@@ -16,5 +16,5 @@
       pkg: "php{{ php.version }}-{{ item }}"
       state: latest
   with_items: "{{ php_packages }}"
-  when: php_packages.0 is defined
+  when: php.packages.0 is defined
 
