@@ -15,6 +15,6 @@
   apt:
       pkg: "php{{ php.version }}-{{ item }}"
       state: latest
-  with_items: "{{ php_packages }}"
+  with_items: "{{ php.packages }}"
   when: php.packages.0 is defined
 
