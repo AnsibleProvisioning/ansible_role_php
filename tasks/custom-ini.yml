@@ -1,4 +1,5 @@
 - name: PHP | Check for custom INI files
+  connection: local
   local_action: stat path="{{ files_dir }}/php"
   become: no
   register: ini_files
